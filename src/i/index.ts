@@ -16,8 +16,8 @@ export default {
 		}
 
 		const backends = [
-			"https://reflecta-s0.r2.roax.world", // 502 every time?
-			"https://reflecta-s1.r2.roax.world",
+			"https://reflecta-s0.r2.roax.world", // lens
+			"https://reflecta-s1.r2.roax.world", // reflecta
 		];
 
 		const exts = ["png", "jpg", "jpeg", "gif", "ico", "webp"];

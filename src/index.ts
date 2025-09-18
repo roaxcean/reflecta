@@ -8,7 +8,7 @@ export default {
 
 		if (!path) {
 			return new Response(
-				JSON.stringify({ status: 400, message: "Missing Path" }),
+				JSON.stringify({ status: 400, message: "Missing Path", fromRoax: "oi!! what are u doing here omg?!! this is my subdomain for storing files!! ur not supposed to be hereeeeee" }),
 				{
 					status: 400,
 					statusText: "Missing Path",
