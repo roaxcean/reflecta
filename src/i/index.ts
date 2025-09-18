@@ -16,7 +16,7 @@ export default {
 		}
 
 		const backends = [
-			"https://reflecta-s0.r2.roax.world",
+			"https://reflecta-s0.r2.roax.world", // 502 every time?
 			"https://reflecta-s1.r2.roax.world",
 		];
 
@@ -39,40 +39,38 @@ export default {
 
 		const fetches = candidates.map(async (url) => {
 			try {
-				const res = await fetch(url, { method: "GET" });
-				if (res.ok) {
-					return { url, res };
+				const res = await fetch(url);
+				if (res.ok && res.body) {
+					const headers = new Headers(res.headers);
+					headers.set("X-Resolved-From", url);
+					const body = await res.arrayBuffer();
+					return new Response(body, { status: res.status, headers });
 				}
 			} catch {
-				// ignore
+				// ignore broken backend
 			}
 			return null;
 		});
 
 		const results = await Promise.all(fetches);
-		const found = results.find((r) => r !== null);
+		const found = results.find(r => r !== null);
 
 		if (!found) {
 			return new Response(
-				JSON.stringify({status: 404, message: "Not Found"}),
-				{ status: 404, statusText: "Not Found", headers: {
+				JSON.stringify({ status: 404, message: "Not Found" }),
+				{
+					status: 404,
+					headers: {
 						"Content-Type": "application/json",
 						"Cache-Control": "public, max-age=60",
 						"Access-Control-Allow-Origin": "*",
-						"X-Content-Type-Options": "nosniff"
-					} }
+						"X-Content-Type-Options": "nosniff",
+					},
+				}
 			);
 		}
 
-		const response = new Response(found.res!.body, {
-			status: found.res!.status,
-			headers: found.res!.headers,
-		});
-
-		response.headers.set("X-Resolved-From", found.url);
-
-		ctx.waitUntil(cache.put(cacheKey, response.clone()));
-
-		return response;
+		ctx.waitUntil(cache.put(cacheKey, found.clone()));
+		return found;
 	},
 };
