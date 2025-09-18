@@ -14,7 +14,7 @@ export default {
 					statusText: "Missing Path",
 					headers: {
 						"Content-Type": "application/json",
-						"Cache-Control": "public, max-age=60",
+						"Cache-Control": "no-store",
 						"Access-Control-Allow-Origin": "*",
 						"X-Content-Type-Options": "nosniff",
 					},
@@ -43,7 +43,7 @@ export default {
 				statusText: "Not Found",
 				headers: {
 					"Content-Type": "application/json",
-					"Cache-Control": "public, max-age=60",
+					"Cache-Control": "no-store",
 					"Access-Control-Allow-Origin": "*",
 					"X-Content-Type-Options": "nosniff",
 				},

@@ -8,7 +8,7 @@ export default {
 				JSON.stringify({status: 400, message: "Missing Path"}),
 				{ status: 400, statusText: "Missing Path", headers: {
 						"Content-Type": "application/json",
-						"Cache-Control": "public, max-age=60",
+						"Cache-Control": "no-store",
 						"Access-Control-Allow-Origin": "*",
 						"X-Content-Type-Options": "nosniff"
 					} }
@@ -62,7 +62,7 @@ export default {
 					status: 404,
 					headers: {
 						"Content-Type": "application/json",
-						"Cache-Control": "public, max-age=60",
+						"Cache-Control": "no-store",
 						"Access-Control-Allow-Origin": "*",
 						"X-Content-Type-Options": "nosniff",
 					},
