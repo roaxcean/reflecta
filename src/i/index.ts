@@ -16,7 +16,7 @@ export default {
 		}
 
 		const backends = [
-			"https://starvault-bucket.r2.aestatic.live",
+			"https://reflecta-s0.r2.roax.world",
 			"https://reflecta-s1.r2.roax.world",
 		];
 
