@@ -1,0 +1,16 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "reflecta-dev",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-09-18",
+	"observability": {
+		"enabled": true
+	},
+	"placement": { "mode": "smart" },
+	"routes": [
+		{
+			"pattern": "dev.roax.world",
+			"custom_domain": true
+		}
+	]
+}
